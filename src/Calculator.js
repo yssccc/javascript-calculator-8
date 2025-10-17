@@ -51,9 +51,13 @@ class Calculator {
     }
   }
   calculate() {
+    if (this.inputValue === '') {
+      return 0;
+    }
     this.extractCustomSeparator();
     this.splitInput();
     this.validate();
+    return this.splitString.reduce((sum, value) => sum + Number(value), 0);
   }
 }
 

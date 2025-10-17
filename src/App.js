@@ -10,9 +10,13 @@ class App {
     try {
       const inputValue = await this.input.getInput(INPUT_MESSAGE);
       const calculator = new Calculator(inputValue);
-      calculator.calculate();
+      const sum = calculator.calculate();
+      if (sum !== null && sum !== undefined) {
+        Console.print(`${OUTPUT_MESSAGE} ${sum}`);
+      }
     } catch (error) {
       Console.print(error.message);
+      throw error;
     }
   }
 }
