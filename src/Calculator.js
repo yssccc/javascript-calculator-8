@@ -1,3 +1,10 @@
+import {
+  ERROR_INVALID_INPUT,
+  ERROR_LONG_SEPARATOR,
+  ERROR_NUMBER_SEPARATOR,
+  ERROR_START_OR_END_SEPARATOR,
+} from './constants/messages.js';
+
 const DEFAULT_SEPARATORS = [',', ':'];
 
 class Calculator {
@@ -36,21 +43,21 @@ class Calculator {
   }
   validate() {
     if (this.isStartOrEndWithSeparator()) {
-      throw new Error('[ERROR] 구분자로 시작하거나 끝날 수 없습니다.');
+      throw new Error(`${ERROR_START_OR_END_SEPARATOR}`);
     }
     this.splitString.forEach((value) => {
       if (!this.isNumber(value)) {
-        throw new Error('[ERROR] 유효하지 않은 입력값입니다.');
+        throw new Error(`${ERROR_INVALID_INPUT}`);
       }
     });
     if (
       this.customSeparator &&
       this.isCustomSeparatorTooLong(this.customSeparator)
     ) {
-      throw new Error('[ERROR] 구분자가 2자 이상일 수 없습니다.');
+      throw new Error(`${ERROR_LONG_SEPARATOR}`);
     }
     if (this.isNumber(this.customSeparator)) {
-      throw new Error('[ERROR] 구분자가 숫자일 수 없습니다.');
+      throw new Error(`${ERROR_NUMBER_SEPARATOR}`);
     }
   }
   calculate() {
