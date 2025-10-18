@@ -20,7 +20,7 @@ class Calculator {
     const regex = new RegExp(`[${this.separators.join('')}]`);
     this.splitString = this.inputValue.split(regex);
   }
-  isNumInput(value) {
+  isNumber(value) {
     const regex = /^[0-9]+$/;
     return regex.test(value);
   }
@@ -39,7 +39,7 @@ class Calculator {
       throw new Error('[ERROR] 구분자로 시작하거나 끝날 수 없습니다.');
     }
     this.splitString.forEach((value) => {
-      if (!this.isNumInput(value)) {
+      if (!this.isNumber(value)) {
         throw new Error('[ERROR] 유효하지 않은 입력값입니다.');
       }
     });
@@ -48,6 +48,9 @@ class Calculator {
       this.isCustomSeparatorTooLong(this.customSeparator)
     ) {
       throw new Error('[ERROR] 구분자가 2자 이상일 수 없습니다.');
+    }
+    if (this.isNumber(this.customSeparator)) {
+      throw new Error('[ERROR] 구분자가 숫자일 수 없습니다.');
     }
   }
   calculate() {
