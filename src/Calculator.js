@@ -50,14 +50,6 @@ class Calculator {
   }
 
   validate() {
-    if (this.isStartOrEndWithSeparator()) {
-      throw new Error(ERROR_START_OR_END_SEPARATOR);
-    }
-    this.splitString.forEach((value) => {
-      if (!this.isNumber(value)) {
-        throw new Error(ERROR_INVALID_INPUT);
-      }
-    });
     if (this.customSeparator) {
       if (this.isCustomSeparatorTooLong(this.customSeparator)) {
         throw new Error(ERROR_LONG_SEPARATOR);
@@ -66,6 +58,14 @@ class Calculator {
         throw new Error(ERROR_NUMBER_SEPARATOR);
       }
     }
+    if (this.isStartOrEndWithSeparator()) {
+      throw new Error(ERROR_START_OR_END_SEPARATOR);
+    }
+    this.splitString.forEach((value) => {
+      if (!this.isNumber(value)) {
+        throw new Error(ERROR_INVALID_INPUT);
+      }
+    });
   }
 
   calculate() {
