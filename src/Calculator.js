@@ -51,21 +51,20 @@ class Calculator {
 
   validate() {
     if (this.isStartOrEndWithSeparator()) {
-      throw new Error(`${ERROR_START_OR_END_SEPARATOR}`);
+      throw new Error(ERROR_START_OR_END_SEPARATOR);
     }
     this.splitString.forEach((value) => {
       if (!this.isNumber(value)) {
-        throw new Error(`${ERROR_INVALID_INPUT}`);
+        throw new Error(ERROR_INVALID_INPUT);
       }
     });
-    if (
-      this.customSeparator &&
-      this.isCustomSeparatorTooLong(this.customSeparator)
-    ) {
-      throw new Error(`${ERROR_LONG_SEPARATOR}`);
-    }
-    if (this.isNumber(this.customSeparator)) {
-      throw new Error(`${ERROR_NUMBER_SEPARATOR}`);
+    if (this.customSeparator) {
+      if (this.isCustomSeparatorTooLong(this.customSeparator)) {
+        throw new Error(ERROR_LONG_SEPARATOR);
+      }
+      if (this.isNumber(this.customSeparator)) {
+        throw new Error(ERROR_NUMBER_SEPARATOR);
+      }
     }
   }
 
@@ -73,9 +72,11 @@ class Calculator {
     if (this.inputValue === '') {
       return 0;
     }
+
     this.extractCustomSeparator();
     this.splitInput();
     this.validate();
+
     return this.splitString.reduce((sum, value) => sum + Number(value), 0);
   }
 }
