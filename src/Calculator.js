@@ -73,7 +73,7 @@ class Calculator {
   }
 
   calculate() {
-    if (this.inputValue === '') {
+    if (this.inputValue.trim() === '') {
       return 0;
     }
 
