@@ -14,14 +14,12 @@ class Calculator {
     this.customSeparator = null;
   }
   extractCustomSeparator() {
-    if (this.inputValue.startsWith('//')) {
-      const endIdx = this.inputValue.indexOf('\\n');
-      this.customSeparator = this.inputValue.slice(2, endIdx);
-      this.separators = [...DEFAULT_SEPARATORS, this.customSeparator];
-      this.inputValue = this.inputValue.slice(endIdx + 2);
-    } else {
-      this.separators = DEFAULT_SEPARATORS;
-    }
+    if (!this.inputValue.startsWith('//')) return;
+
+    const endIdx = this.inputValue.indexOf('\\n');
+    this.customSeparator = this.inputValue.slice(2, endIdx);
+    this.separators = [...DEFAULT_SEPARATORS, this.customSeparator];
+    this.inputValue = this.inputValue.slice(endIdx + 2);
   }
   splitInput() {
     const regex = new RegExp(`[${this.separators.join('')}]`);
