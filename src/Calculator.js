@@ -1,4 +1,5 @@
 import {
+  ERROR_EMPTY_SEPARATOR,
   ERROR_INVALID_INPUT,
   ERROR_LONG_SEPARATOR,
   ERROR_NUMBER_SEPARATOR,
@@ -51,6 +52,9 @@ class Calculator {
 
   validate() {
     if (this.customSeparator) {
+      if (this.customSeparator.trim() === '') {
+        throw new Error(ERROR_EMPTY_SEPARATOR);
+      }
       if (this.isCustomSeparatorTooLong(this.customSeparator)) {
         throw new Error(ERROR_LONG_SEPARATOR);
       }

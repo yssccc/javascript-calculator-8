@@ -6,3 +6,4 @@ export const ERROR_START_OR_END_SEPARATOR =
 export const ERROR_INVALID_INPUT = '[ERROR] 유효하지 않은 입력값입니다.';
 export const ERROR_LONG_SEPARATOR = '[ERROR] 구분자가 2자 이상일 수 없습니다.';
 export const ERROR_NUMBER_SEPARATOR = '[ERROR] 구분자가 숫자일 수 없습니다.';
+export const ERROR_EMPTY_SEPARATOR = '[ERROR] 구분자가 공백일 수 없습니다.';
