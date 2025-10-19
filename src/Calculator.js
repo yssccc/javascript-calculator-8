@@ -18,6 +18,10 @@ class Calculator {
     if (!this.inputValue.startsWith('//')) return;
 
     const endIdx = this.inputValue.indexOf('\\n');
+    if (endIdx === -1) {
+      return;
+    }
+
     this.customSeparator = this.inputValue.slice(2, endIdx);
     this.separators = [...DEFAULT_SEPARATORS, this.customSeparator];
     this.inputValue = this.inputValue.slice(endIdx + 2);
