@@ -24,7 +24,10 @@ class Calculator {
     }
 
     this.customSeparator = this.inputValue.slice(2, endIdx);
-    this.separators = [...DEFAULT_SEPARATORS, this.customSeparator];
+    if (!this.separators.includes(this.customSeparator)) {
+      this.separators.push(this.customSeparator);
+    }
+
     this.inputValue = this.inputValue.slice(endIdx + 2);
   }
 
